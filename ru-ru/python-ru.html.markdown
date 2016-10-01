@@ -3,9 +3,11 @@ language: python
 lang: ru-ru
 contributors:
     - ["Louie Dinh", "http://ldinh.ca"]
+    - ["Evan K.", "https://github.com/justblah"]
 translators:
     - ["Yury Timofeev", "http://twitter.com/gagar1n"]
     - ["Andre Polykanine", "https://github.com/Oire"]
+    - ["Evan K.", "https://github.com/justblah"]
 filename: learnpython-ru.py
 ---
 
@@ -21,7 +23,7 @@ filename: learnpython-ru.py
 
 ```python
 # Однострочные комментарии начинаются с символа решётки.
-""" Многострочный текст может быть 
+""" Многострочный текст может быть
     записан, используя 3 знака " и обычно используется
     в качестве встроенной документации
 """
@@ -39,7 +41,7 @@ filename: learnpython-ru.py
 10 * 2 #=> 20
 35 / 5 #=> 7
 
-# А вот деление немного сложнее. В этом случае происходит деление 
+# А вот деление немного сложнее. В этом случае происходит деление
 # целых чисел, и результат автоматически округляется в меньшую сторону.
 5 / 2 #=> 2
 
@@ -124,13 +126,13 @@ not False #=> True
 # None является объектом
 None #=> None
 
-# Не используйте оператор равенства '=='' для сравнения 
+# Не используйте оператор равенства '=='' для сравнения
 # объектов с None. Используйте для этого «is»
 "etc" is None #=> False
 None is None  #=> True
 
-# Оператор 'is' проверяет идентичность объектов. Он не 
-# очень полезен при работе с примитивными типами, но 
+# Оператор 'is' проверяет идентичность объектов. Он не
+# очень полезен при работе с примитивными типами, но
 # зато просто незаменим при работе с объектами.
 
 # None, 0 и пустые строки/списки равны False.
@@ -343,7 +345,7 @@ else:           # Это тоже необязательно.
 for animal in ["собака", "кошка", "мышь"]:
     # Можете использовать оператор % для интерполяции форматированных строк
     print("%s — это млекопитающее" % animal)
-    
+
 """
 «range(число)» возвращает список чисел
 от нуля до заданного числа
@@ -451,7 +453,7 @@ def setX(num):
     # Локальная переменная x — это не то же самое, что глобальная переменная x
     x = num # => 43
     print (x) # => 43
-    
+
 def setGlobalX(num):
     global x
     print (x) # => 5
@@ -563,7 +565,7 @@ math.sqrt == m.sqrt == sqrt  # => True
 # можете писать свои модули и импортировать их. Название
 # модуля совпадает с названием файла.
 
-# Вы можете узнать, какие функции и атрибуты определены 
+# Вы можете узнать, какие функции и атрибуты определены
 # в модуле
 import math
 dir(math)
@@ -596,11 +598,32 @@ for i in double_numbers(xrange_):
 
 
 # Декораторы
+# Декоратор является функцией высшего порядка, которая принимает и возвращает
+# другую функцию.
+# В нашем случае декоратор принимает функцию, которая была обернута декоратором,
+# как параметр и возвращает модифицированную функцию.
+# Пример использования простого декоратора – декоратор @add_apples добавляет
+# элемент 'Яблоко' в список фруктов, возвращаемый функцией get_fruits.
+def add_apples(func):
+    def get_fruits():
+        fruits = func()
+        fruits.append('Яблоко')
+        return fruits
+    return get_fruits
+
+@add_apples
+def get_fruits():
+    fruits = ['Банан', 'Манго', 'Апельсин']
+    return fruits
+
+# Напечатает список фруктов с элементом 'Яблоко' в нём:
+# Банан, Манго, Апельсин, Яблоко
+print ', '.join(get_fruits())
+
 # В этом примере beg оборачивает say
 # Метод beg вызовет say. Если say_please равно True,
 # он изменит возвращаемое сообщение
 from functools import wraps
-
 
 def beg(target_function):
     @wraps(target_function)
@@ -612,16 +635,13 @@ def beg(target_function):
 
     return wrapper
 
-
 @beg
 def say(say_please=False):
     msg = "Вы не купите мне пива?"
     return msg, say_please
 
-
 print(say())  # Вы не купите мне пива?
 print(say(say_please=True)) # Вы не купите мне пива? Пожалуйста! У меня нет денег :(
-
 ```
 
 ## Хотите ещё?
@@ -640,4 +660,3 @@ print(say(say_please=True)) # Вы не купите мне пива? Пожал
 * [Programming Python](http://www.amazon.com/gp/product/0596158106/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596158106&linkCode=as2&tag=homebits04-20)
 * [Dive Into Python](http://www.amazon.com/gp/product/1441413022/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1441413022&linkCode=as2&tag=homebits04-20)
 * [Python Essential Reference](http://www.amazon.com/gp/product/0672329786/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672329786&linkCode=as2&tag=homebits04-20)
-

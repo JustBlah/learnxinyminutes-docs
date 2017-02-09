@@ -5,8 +5,8 @@ contributors:
     - ["Amin Bandali", "http://aminbandali.com"]
     - ["Andre Polykanine", "https://github.com/Oire"]
     - ["evuez", "http://github.com/evuez"]
+    - ["asyne", "https://github.com/asyne"]
     - ["habi", "http://github.com/habi"]
-    - ["Evan K.", "https://github.com/justblah"]
 filename: learnpython.py
 ---
 
@@ -752,9 +752,7 @@ gen_to_list = list(values)
 print(gen_to_list)  # => [-1, -2, -3, -4, -5]
 
 # Decorators
-# Decorator is a higher order function, which accepts and returns a function.
-# In our case decorator accepts a function that is wrapped by decorator as a
-# parameter and returns a new modified function.
+# A decorator is a higher order function, which accepts and returns a function.
 # Decorator usage example – @add_apples decorator will add 'Apple' element into
 # fruits list returned by get_fruits target function.
 def add_apples(func):
